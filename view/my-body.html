@@ -1,32 +1,10 @@
 <div class="container bg-secondary bg-gradient rounded" style="--bs-bg-opacity: .4; border-style: dashed;">
     <div id="products" class="row gy-2 py-4 my-2 overflow-auto" style="height: 250px;">
         <div class="col-md-12 text-center"><h2>Invoice Product</h2></div>
-        <div  id="product_0" class="row row-cols-sm-6 gy-2 py-2">
-            <div>
-                <label for="Product_code" class="form-label">Product code</label>
-                <input type="number" class="form-control" name="Product_code" id="Product_code" placeholder="Write the product code">
-            </div>
-            <div>
-                <label for="Product_name" class="form-label">Product name</label>
-                <input type="text" class="form-control" name="Product_name" id="Product_name" placeholder="Write the product name">
-            </div>
-            <div>
-                <label for="Quantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" value="0" name="Quantity" id="Quantity" readonly placeholder="Write the Quantity">
-            </div>
-            <div>
-                <label for="Unit_value" class="form-label">Unit value</label>
-                <input type="number" class="form-control" name="Unit_value" id="Unit_value" placeholder="Write the Unit value">
-            </div>
-            <div class="d-flex align-items-center">
-                <button type="button" class="btn w-100 h-100 btn-outline-success" data-row="product_0">+</button>
-            </div>
-            <div class="d-flex align-items-center">
-                <button type="button" class="btn w-100 h-100 btn-outline-danger" data-row="product_0">-</button>
-            </div>
-            
-        </div>
-        
+        <my-products></my-products>
+        <my-products></my-products>
+        <my-products></my-products>
+
     </div>
 </div>
 <div class="container g-0">

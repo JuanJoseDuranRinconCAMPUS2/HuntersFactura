@@ -9,35 +9,10 @@ export class myBody extends HTMLElement{
     async components(){
         return await (await fetch("view/my-body.html")).text();
     }
-    selection(e){
-        let $ = e.target;
-        if($.nodeName == "BUTTON"){
-            let inputs = document.querySelectorAll(`#${$.dataset.row} input`);
-            switch ($.innerHTML) {
-                case "-":
-                    inputs.forEach(element => {
-                        if(element.name == "Quantity" && element.value==0){
-                             document.querySelector(`#${$.dataset.row}`).remove();
-                        }else if(element.name == "Quantity"){
-                            element.value--;
-                       }
-                     });
-                break;
-                case "+":
-                    inputs.forEach(element => {
-                        if (element.name == "Quantity") {
-                            element.value++;
-                        }
-                    });
-                break;
-            }
-        }
-    }
+    
     connectedCallback(){
         this.components().then(html=>{
             this.innerHTML = html;
-            this.container = this.querySelector("#products");
-            this.container.addEventListener("click", this.selection);
         });
     }
 }
