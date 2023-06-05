@@ -12,7 +12,6 @@ export class myProducts extends HTMLElement{
             let input = this.querySelector(`#Quantity`);
             switch ($.innerHTML) {
                 case "-":
-                    console.log(input);
                         if(input.name == "Quantity" && input.value==0){
                              document.querySelector(`#${$.dataset.row}`).remove();
                         }else if(input.name == "Quantity"){
