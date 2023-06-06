@@ -11,15 +11,18 @@ export class myProducts extends HTMLElement{
     }
     sistem(e){
         let $ = e.target;
-        if($.nodeName == "BUTTON"){
+        if($.nodeName == "BUTTON" ){
+            const count = document.querySelectorAll('my-products').length;
             let box = e.target.parentNode.parentNode;
             let inputs = box.querySelectorAll(`input`);  
             switch ($.innerHTML) {
                 case "-":
                     inputs.forEach(element => {
                         if (element.name === "Quantity" && element.value == 0) {
-                            box.parentNode.remove();
-                        } else if (element.name === "Quantity") {
+                            if (count > 1) {
+                                box.parentNode.remove();
+                            }
+                        }else if (element.name === "Quantity") {
                             element.value--;
                         }
                     });

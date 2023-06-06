@@ -13,9 +13,14 @@ export class myBody extends HTMLElement{
     async add(e){
         let $ = e.target;
         if ($.nodeName == "BUTTON") {
-            let plantilla = this.querySelector("#products").lastElementChild;
-            plantilla = plantilla.cloneNode(true);
-            document.querySelector("#products").appendChild(plantilla);
+            const count = this.querySelectorAll('my-products').length;
+            if (count >= 1) {
+                let plantilla = this.querySelector("#products").lastElementChild;
+                console.log(count);
+                plantilla = plantilla.cloneNode(true);
+                document.querySelector("#products").appendChild(plantilla);
+            }
+            
         }
     }
 
