@@ -6,22 +6,30 @@ export class myProducts extends HTMLElement{
     async components(){
         return await (await fetch("view/my-products.html")).text();
     }
+    hadledEvent(e){
+        (e.type === "click") ? this.sistem(e) : console.log("error");
+    }
     sistem(e){
         let $ = e.target;
         if($.nodeName == "BUTTON"){
-            let input = this.querySelector(`#Quantity`);
+            let box = e.target.parentNode.parentNode;
+            let inputs = box.querySelectorAll(`input`);  
             switch ($.innerHTML) {
                 case "-":
-                        if(input.name == "Quantity" && input.value==0){
-                             document.querySelector(`#${$.dataset.row}`).remove();
-                        }else if(input.name == "Quantity"){
-                            input.value--;
-                       }
+                    inputs.forEach(element => {
+                        if (element.name === "Quantity" && element.value == 0) {
+                            box.parentNode.remove();
+                        } else if (element.name === "Quantity") {
+                            element.value--;
+                        }
+                    });
                 break;
                 case "+":
-                        if (input.name == "Quantity") {
-                            input.value++;
+                    inputs.forEach(element => {
+                        if (element.name == "Quantity") {
+                            element.value++;
                         }
+                    });
                 break;
             }
         }
@@ -30,7 +38,7 @@ export class myProducts extends HTMLElement{
         document.adoptedStyleSheets.push(styles);
         this.components().then(html=>{
             this.innerHTML=html;
-            this.container = this.querySelector("#product_0");
+            this.container = document.querySelector("#products");
             this.container.addEventListener("click", this.sistem);
         })
     }

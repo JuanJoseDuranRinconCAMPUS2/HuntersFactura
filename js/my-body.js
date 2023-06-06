@@ -10,9 +10,19 @@ export class myBody extends HTMLElement{
         return await (await fetch("view/my-body.html")).text();
     }
     
+    async add(e){
+        let $ = e.target;
+        if ($.nodeName == "BUTTON") {
+            let plantilla = this.querySelector("#products").lastElementChild;
+            plantilla = plantilla.cloneNode(true);
+            document.querySelector("#products").appendChild(plantilla);
+        }
+    }
+
     connectedCallback(){
         this.components().then(html=>{
             this.innerHTML = html;
+            this.add = this.querySelector("#add").addEventListener("click", this.add.bind(this));
         });
     }
 }
