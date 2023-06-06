@@ -18,7 +18,7 @@ export class myProducts extends HTMLElement{
             switch ($.innerHTML) {
                 case "-":
                     inputs.forEach(element => {
-                        if (element.name === "Quantity" && element.value == 0) {
+                        if (element.name === "Quantity" && element.value == 1) {
                             if (count > 1) {
                                 box.parentNode.remove();
                             }

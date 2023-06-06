@@ -16,7 +16,6 @@ export class myBody extends HTMLElement{
             const count = this.querySelectorAll('my-products').length;
             if (count >= 1) {
                 let plantilla = this.querySelector("#products").lastElementChild;
-                console.log(count);
                 plantilla = plantilla.cloneNode(true);
                 document.querySelector("#products").appendChild(plantilla);
             }
@@ -24,10 +23,36 @@ export class myBody extends HTMLElement{
         }
     }
 
+    send(e){
+        const myProducts = document.querySelector("my-products");
+        const inputsProducts = myProducts.querySelectorAll('input');
+        let input = document.querySelectorAll("input");
+        let info = {}, producto = {}, lista = {}, data = {}, count = 0;
+        producto.product = [];
+        input.forEach((val, id) => {
+            if (id <= 7) {
+                info[val.name] = val.value;
+            } else if (count <= inputsProducts.length) {
+                lista[val.name] = val.value;
+                count++;
+                if (count == inputsProducts.length) {
+                producto.product.push(lista);
+                lista = {};
+                count = 0;
+                }
+            }
+        });
+        data.info = info;
+        data.producto = producto.product;
+        console.log(data);
+    }
+
     connectedCallback(){
         this.components().then(html=>{
             this.innerHTML = html;
             this.add = this.querySelector("#add").addEventListener("click", this.add.bind(this));
+            this.send = this.querySelector("#send").addEventListener("click", this.send.bind(this));
+        
         });
     }
 }
