@@ -3,10 +3,13 @@ import styles from "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootst
 export class myBody extends HTMLElement{
     constructor(){
         super();
+        this.myHeaders = new Headers({"content-Type": "application/json"});
+        this.config = { headers : this.myHeaders};
         document.adoptedStyleSheets.push(styles);
 
     }
     async components(){
+        
         return await (await fetch("view/my-body.html")).text();
     }
     
@@ -45,6 +48,14 @@ export class myBody extends HTMLElement{
         data.info = info;
         data.producto = producto.product;
         console.log(data);
+        this.data = data;
+        this.transfer();
+    }
+
+    transfer(e){
+        this.config.method = "POST";
+        this.config.body = JSON.stringify(this.data);
+        console.log(this.config);
     }
 
     connectedCallback(){
