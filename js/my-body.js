@@ -47,15 +47,18 @@ export class myBody extends HTMLElement{
         });
         data.info = info;
         data.producto = producto.product;
-        console.log(data);
         this.data = data;
         this.transfer();
     }
 
-    transfer(e){
+    async transfer(e){
         this.config.method = "POST";
         this.config.body = JSON.stringify(this.data);
-        console.log(this.config);
+        let peticio = await fetch("uploads/app.php");
+        let res = await peticio.text();
+        document.querySelector("pre").innerHTML = res;
+        console.log(this.data);
+
     }
 
     connectedCallback(){
