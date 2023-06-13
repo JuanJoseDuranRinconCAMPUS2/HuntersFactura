@@ -6,14 +6,21 @@
             $arg = array_pop($arg);
             return (!(self::$instance instanceof self) || !empty($arg)) ? self::$instance = new static(...(array) $arg) : self::$instance;
         }
+        function __set($name, $value){
+            $this->$name = $value;
+        }
+        function __get($name){
+            return this->$name;
+        }
     }
     function autoload($class){
         //Directorios donde se buscan los archivos de clase
         $directories = [
-            dirname(__DIR__).'/scripts/invoice/'
-            dirname(__DIR__).'/scripts/client/'
-            dirname(__DIR__).'/scripts/product/'
-            dirname(__DIR__).'/scripts/seller/'
+            dirname(__DIR__).'/scripts/invoice/',
+            dirname(__DIR__).'/scripts/client/',
+            dirname(__DIR__).'/scripts/product/',
+            dirname(__DIR__).'/scripts/seller/',
+            dirname(__DIR__).'/scripts/db/',
         ];
         //Convierte el nombre de la clase en un nombre de un archivo relativo
 
@@ -34,27 +41,27 @@
     spl_autoload_register('autoload');
 
     
-    class apibonita{
-        use getInstance;
+    // class apibonita{
+    //     use getInstance;
 
-        function __construct(private $_METHOD, public $_HEADER, private $_DATA){
-            switch ($_METHOD) {
-                case 'POST':
-                    tb_customer::getInstance($_DATA['info']);;
-                    break;
+    //     function __construct(private $_METHOD, public $_HEADER, private $_DATA){
+    //         switch ($_METHOD) {
+    //             case 'POST':
+    //                 tb_customer::getInstance($_DATA['info']);;
+    //                 break;
                 
-                default:
-                    # code...
-                    break;
-            }
-        }
-    }
-    $data = [
-        "_METHOD"=>$_SERVER['REQUEST_METHOD'], 
-        "_HEADER"=> apache_request_headers(), 
-        "_DATA" => json_decode(file_get_contents("php://input"), true)
-    ];
-    apibonita::getInstance($data);
+    //             default:
+    //                 # code...
+    //                 break;
+    //         }
+    //     }
+    // }
+    // $data = [
+    //     "_METHOD"=>$_SERVER['REQUEST_METHOD'], 
+    //     "_HEADER"=> apache_request_headers(), 
+    //     "_DATA" => json_decode(file_get_contents("php://input"), true)
+    // ];
+    // apibonita::getInstance($data);
     
 
 ?>
