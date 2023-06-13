@@ -1,9 +1,60 @@
 
 CREATE DATABASE JuanJData;
+DROP DATABASE JuanJData;
 USE JuanJData;
 CREATE TABLE tb_personas(
     cc INT(11) NOT NULL COMMENT 'campo para almacenar la cedula de los usuario',
-    nom_com VARCHAR(57) NOT NULL COMMENT 'campo para almacenar el nombre completo de los usuario',
+    nom_com VARCHAR(57) DEFAULT 'No hay nombre' COMMENT 'campo para almacenar el nombre completo de los usuario',
     edad INTEGER(3) NOT NULL COMMENT 'campo para almacenar la edad de los usuario',
     PRIMARY KEY(cc)
 );
+DROP TABLE tb_personas;
+ALTER TABLE tb_personas MODIFY COLUMN nom_com VARCHAR(65);
+SELECT CURRENT_DATE; /*toma la fecha al momento */
+SELECT CURRENT_TIME; /*toma la hora al momento */
+SELECT NOW(); /*toma la fecha y la hora al momento */
+
+/* ejercicio */
+CREATE DATABASE db_hunter_facture_JuanJoseD;
+DROP DATABASE db_hunter_facture_JuanJoseD;
+
+USE db_hunter_facture_JuanJoseD;
+CREATE TABLE tb_invoice(
+    n_invoice VARCHAR(25) NOT NULL PRIMARY KEY COMMENT 'numero unico de la factura con las combinaciones respectivas',
+    invoice_date DATETIME NOT NULL DEFAULT NOW() UNIQUE COMMENT 'Fecha de generacion de la factura'
+);
+CREATE TABLE tb_seller(
+    id_seller INTEGER(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'numero del vendedor',
+    seller VARCHAR(57) DEFAULT 'No hay nombre' COMMENT 'campo para almacenar el nombre completo de los vendedores'
+);
+CREATE TABLE tb_client(
+    identification INT(25) PRIMARY KEY NOT NULL COMMENT 'campo para almacenar la cedula de los clientes',
+    client_name VARCHAR(57) DEFAULT 'No hay nombre' COMMENT 'campo para almacenar el nombre completo de los clientes',
+    client_email VARCHAR(256) DEFAULT 'No hay email' COMMENT 'campo para almacenar el email de los clientes',
+    client_address VARCHAR(200) DEFAULT 'No hay dirrecion' COMMENT 'campo para almacenar la dirrecion de los clientes',
+    client_phone VARCHAR(11) DEFAULT 'no hay numero' COMMENT 'campo para almacenar el telefono de los clientes'
+);
+CREATE TABLE tb_product(
+    product_code INT(11) PRIMARY KEY NOT NULL  COMMENT 'campo para almacenar el codigo de los productos',
+    product_name VARCHAR(57) DEFAULT 'No hay nombre del producto' COMMENT 'campo para almacenar el nombre de los productos',
+    product_quantity INT(4) DEFAULT '1' COMMENT 'campo para almacenar la cantidad de los productos',
+    product_Unit_value INT(11) NOT NULL COMMENT 'campo para almacenar el precio unitario de los productos'
+);
+ALTER TABLE tb_client MODIFY client_phone VARCHAR(11)  COMMENT 'campo para almacenar el telefono de los clientes';
+
+/*creamos los campos de las llaves foraneas*/
+
+ALTER TABLE tb_invoice ADD fk_identification INT(25) NOT NULL COMMENT 'relacion de la tabla tb_client';
+ALTER TABLE tb_invoice ADD fk_id_seller INTEGER(11) NOT NULL COMMENT 'relacion de la tabla tb_seller';
+ALTER TABLE tb_invoice ADD fk_product_code INT(11) NOT NULL COMMENT 'relacion de la tabla tb_product';
+
+/*creamos las relaciones entre las tablas*/
+ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_client_fk FOREIGN KEY(fk_identification) REFERENCES tb_client(identification);
+ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_seller_fk FOREIGN KEY(fk_id_seller) REFERENCES tb_seller(id_seller);
+ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_product_fk FOREIGN KEY(fk_product_code) REFERENCES tb_product(product_code);
+
+INSERT INTO tb_invoice (n_invoice) VALUES ("1987");
+SELECT * FROM tb_invoice;
+
+TRUNCATE TABLE tb_product;
+DROP TABLE tb_client;
