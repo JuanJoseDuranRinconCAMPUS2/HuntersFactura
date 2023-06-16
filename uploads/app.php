@@ -9,9 +9,7 @@
         function __set($name, $value){
             $this->$name = $value;
         }
-        function __get($name){
-            return this->$name;
-        }
+       
     }
     function autoload($class){
         //Directorios donde se buscan los archivos de clase
@@ -40,7 +38,7 @@
     }
     spl_autoload_register('autoload');
 
-    
+    client::getInstance(json_decode(file_get_contents("php://input"), true));
     // class apibonita{
     //     use getInstance;
 

@@ -53,8 +53,34 @@ ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_client_fk FOREIGN KEY(fk_id
 ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_seller_fk FOREIGN KEY(fk_id_seller) REFERENCES tb_seller(id_seller);
 ALTER TABLE tb_invoice ADD CONSTRAINT  tb_invoice_tb_product_fk FOREIGN KEY(fk_product_code) REFERENCES tb_product(product_code);
 
+/*introducimos data en las tablas*/
+
+INSERT INTO tb_client(identification,client_name,client_email,client_address,client_phone) VALUES("13214","Juan Duran","juanj@gmail.com","carrera 24 c43-13","312342345");
+INSERT INTO tb_invoice(n_invoice,fk_identification, fk_id_seller,fk_product_code) VALUES(1,123,1,1);
+
+
+
+/* pruebas y aprendizajes de tablas*/
 INSERT INTO tb_invoice (n_invoice) VALUES ("1987");
-SELECT * FROM tb_invoice;
+SELECT * FROM tb_client;
+SELECT client_name AS "client's_names" FROM tb_client;
+SELECT full_name FROM tb_client WHERE identificacion = 1097782901; /*saca el dato que cumpla con dicha caracteristica*/
+SELECT * FROM tb_client ORDER BY (full_name); /*ordenar alfabeticamente la data*/
+SELECT * FROM tb_client ORDER BY (full_name) DESC; /*ordenar inversamente alfabeticamente la data*/
+SELECT * FROM tb_client ORDER BY full_name, email; /*ordenar alfabeticamente la data teniendo en cuenta el nombre y el email*/
+SELECT * FROM tb_client LIMIT 0,14; /*pone un limite a la data mostrada*/
+SELECT * FROM tb_client LIMIT 9 OFFSET 5; /*muestra los 9 datos quevan despues del dato numero 5*/
+UPDATE tb_client SET full_name = "Juan Jose Duran Rincon" WHERE identificacion = 1097782901; /*cambiar la data de un espacio expecifico*/
+DELETE FROM tb_client WHERE identificacion = 1097782901; /*borra la data de un espacio expecifico*/
 
 TRUNCATE TABLE tb_product;
 DROP TABLE tb_client;
+
+/*crear una variable y asignarle un dato*/
+SELECT count(*) INTO @AAA FROM tb_client;
+SELECT @camper;
+/*entrando a la base de datos del trainer*/
+
+USE db_hunter_facture;
+INSERT INTO tb_client(identificacion,full_name,email,address,phone) VALUES("1097782901","Juan Jose Duran Rincon","juanjoseduranrincon404@gmail.com","carrera 11c 11-03","3152353383");
+
