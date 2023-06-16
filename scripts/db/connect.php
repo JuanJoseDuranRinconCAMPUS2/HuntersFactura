@@ -2,7 +2,7 @@
     interface environments{
         public function __get($name);
     }
-    class connect extends credentials implements environments{
+    abstract class connect extends credentials implements environments{
         use getInstance;
         protected $conx;
         function __construct(private $driver = "mysql", private $port = 3306){
