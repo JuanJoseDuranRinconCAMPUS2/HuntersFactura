@@ -38,7 +38,10 @@
     }
     spl_autoload_register('autoload');
 
-    client::getInstance(json_decode(file_get_contents("php://input"), true));
+    // client::getInstance(json_decode(file_get_contents("php://input"), true))->postClient();
+    client::getInstance(json_decode(file_get_contents("php://input"), true))->getAllClient();
+
+    
     // class apibonita{
     //     use getInstance;
 

@@ -71,7 +71,7 @@ SELECT * FROM tb_client ORDER BY full_name, email; /*ordenar alfabeticamente la 
 SELECT * FROM tb_client LIMIT 0,14; /*pone un limite a la data mostrada*/
 SELECT * FROM tb_client LIMIT 9 OFFSET 5; /*muestra los 9 datos quevan despues del dato numero 5*/
 UPDATE tb_client SET full_name = "Juan Jose Duran Rincon" WHERE identificacion = 1097782901; /*cambiar la data de un espacio expecifico*/
-DELETE FROM tb_client WHERE identificacion = 1097782901; /*borra la data de un espacio expecifico*/
+DELETE FROM tb_client WHERE identification = 21134213; /*borra la data de un espacio expecifico*/
 
 TRUNCATE TABLE tb_product;
 DROP TABLE tb_client;
