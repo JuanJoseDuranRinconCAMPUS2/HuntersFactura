@@ -1,10 +1,10 @@
 <?php
     class client extends connect{
         private $queryPost= 'INSERT INTO tb_client(identification,client_name,client_email,client_address,client_phone) VALUES(:cc,:name,:email,:direction,:cellphone)';
-        private $queryGetAll= 'SELECT * FROM tb_client';
+        private $queryGetAll = 'SELECT identification AS "cc", client_name AS "name", email AS "client_email", address AS "client_address", phone AS "client_phone" FROM tb_client';
         private $message;
         use getInstance;
-        function __construct(private $Identification, public $Full_Name, public $Email, private $Address, private $Phone){parent::__construct();}
+        function __construct(public $Seller){parent::__construct();}
         public function postClient(){
             try {
                 $res = $this->conx->prepare($this->queryPost);

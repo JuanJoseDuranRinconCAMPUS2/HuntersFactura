@@ -32,7 +32,7 @@ CREATE TABLE tb_client(
     client_name VARCHAR(57) DEFAULT 'No hay nombre' COMMENT 'campo para almacenar el nombre completo de los clientes',
     client_email VARCHAR(256) DEFAULT 'No hay email' COMMENT 'campo para almacenar el email de los clientes',
     client_address VARCHAR(200) DEFAULT 'No hay dirrecion' COMMENT 'campo para almacenar la dirrecion de los clientes',
-    client_phone VARCHAR(11) DEFAULT 'no hay numero' COMMENT 'campo para almacenar el telefono de los clientes'
+    client_phone VARCHAR(20) DEFAULT 'no hay numero' COMMENT 'campo para almacenar el telefono de los clientes'
 );
 CREATE TABLE tb_product(
     product_code INT(11) PRIMARY KEY NOT NULL  COMMENT 'campo para almacenar el codigo de los productos',
@@ -84,3 +84,6 @@ SELECT @camper;
 USE db_hunter_facture;
 INSERT INTO tb_client(identificacion,full_name,email,address,phone) VALUES("1097782901","Juan Jose Duran Rincon","juanjoseduranrincon404@gmail.com","carrera 11c 11-03","3152353383");
 
+INSERT INTO tb_seller(seller) VALUES("Pedro vendedor");
+
+SELECT id_seller AS "identification", seller AS "salesman" FROM tb_seller;
