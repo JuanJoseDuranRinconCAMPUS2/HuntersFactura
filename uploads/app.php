@@ -41,8 +41,16 @@
     // client::getInstance(json_decode(file_get_contents("php://input"), true))->postClient();
     // client::getInstance(json_decode(file_get_contents("php://input"), true))->getAllClient();
 
-    seller::getInstance(json_decode(file_get_contents("php://input"), true))->postSeller();
-    seller::getInstance(json_decode(file_get_contents("php://input"), true))->getAllSeller();
+    // seller::getInstance(json_decode(file_get_contents("php://input"), true))->postSeller();
+    // seller::getInstance(json_decode(file_get_contents("php://input"), true))->getAllSeller();
+
+    // product::getInstance(json_decode(file_get_contents("php://input"), true))->postProduct();
+    // product::getInstance(json_decode(file_get_contents("php://input"), true))->getAllProduct();
+
+    invoice::getInstance(json_decode(file_get_contents("php://input"), true))->postInvoice();
+    invoice::getInstance(json_decode(file_get_contents("php://input"), true))->getAllInvoice();
+    
+
     // class apibonita{
     //     use getInstance;
 

@@ -84,6 +84,24 @@ SELECT @camper;
 USE db_hunter_facture;
 INSERT INTO tb_client(identificacion,full_name,email,address,phone) VALUES("1097782901","Juan Jose Duran Rincon","juanjoseduranrincon404@gmail.com","carrera 11c 11-03","3152353383");
 
+INSERT INTO tb_product(product_code,product_name,product_quantity,product_Unit_value) VALUES(:code,:name,:quantity,:value);
+
+INSERT INTO tb_invoice(n_invoice,invoice_date) VALUES(:code,:datenow);
+
 INSERT INTO tb_seller(seller) VALUES("Pedro vendedor");
 
 SELECT id_seller AS "identification", seller AS "salesman" FROM tb_seller;
+SELECT product_code AS "code", product_name AS "name", product_quantity AS "quantity", product_Unit_value AS "value" FROM tb_product;
+
+SELECT n_invoice AS "code", invoice_date AS "date", fk_identification AS "cc", fk_id_seller AS "code_seller", fk_product_code AS "product_code" FROM tb_invoice;
+
+SELECT * FROM tb_seller;
+SELECT * FROM tb_client;
+SELECT * FROM tb_product;
+
+
+
+SELECT id_seller AS "identification" FROM tb_seller ORDER BY id_seller DESC LIMIT 1;
+
+SELECT identification AS "id" FROM tb_client ORDER BY identification DESC LIMIT 1;
+SELECT product_code AS "codeP" FROM tb_product ORDER BY product_code DESC LIMIT 1;

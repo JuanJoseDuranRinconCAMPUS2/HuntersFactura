@@ -1,6 +1,6 @@
 <?php
     class seller extends connect{
-        private $queryPost= 'INSERT INTO tb_seller(seller) VALUES(:name);';
+        private $queryPost= 'INSERT INTO tb_seller(seller) VALUES(:name)';
         private $queryGetAll = 'SELECT id_seller AS "identification", seller AS "salesman" FROM tb_seller';
         private $message;
         use getInstance;
