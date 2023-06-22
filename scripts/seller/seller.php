@@ -1,4 +1,5 @@
 <?php
+    session_start();
     class seller extends connect{
         private $queryPost= 'INSERT INTO tb_seller(seller) VALUES(:name)';
         private $queryGetAll = 'SELECT id_seller AS "identification", seller AS "salesman" FROM tb_seller';
@@ -7,6 +8,7 @@
         function __construct(public $Seller){parent::__construct();}
         public function postSeller(){
             try {
+                $_SESSION['id_Seller'] = $this->Seller;
                 $res = $this->conx->prepare($this->queryPost);
                 $res->bindValue("name", $this->Seller);
                 $res->execute();

@@ -103,5 +103,15 @@ SELECT * FROM tb_product;
 
 SELECT id_seller AS "identification" FROM tb_seller ORDER BY id_seller DESC LIMIT 1;
 
+
 SELECT identification AS "id" FROM tb_client ORDER BY identification DESC LIMIT 1;
 SELECT product_code AS "codeP" FROM tb_product ORDER BY product_code DESC LIMIT 1;
+
+SELECT * FROM tb_client WHERE identification = LAST_INSERT_ID();
+
+SELECT MAX(identification) FROM tb_client;
+
+SELECT LAST_INSERT_ID() AS identification;
+SELECT identification FROM tb_client ORDER BY identification DESC LIMIT 1;
+
+SELECT * FROM tb_client ORDER BY identification DESC LIMIT 1;
