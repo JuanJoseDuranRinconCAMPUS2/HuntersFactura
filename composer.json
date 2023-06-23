@@ -1,0 +1,23 @@
+{
+    "name": "juanj/hunters-factura",
+    "description": "...",
+    "autoload": {
+        "psr-4": {
+            "App\\": [
+                "./scripts",
+                "./scripts/invoice",
+                "./scripts/client",
+                "./scripts/product",
+                "./scripts/seller",
+                "./scripts/db"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "JuanJoseDuranRinconCAMPUS2",
+            "email": "jduranrinconcampus@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,4 +1,5 @@
 <?php
+    namespace App;
     abstract class credentials{
         //CREDENCIALES CAMPUS
         // protected $host = '172.16.48.204';
